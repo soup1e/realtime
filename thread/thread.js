@@ -1,15 +1,17 @@
-import '../auth/user.js';
-import { getPost } from '../fetch-utils.js';
+import { getPost, createComment, getUser } from '../fetch-utils.js';
+import { renderComment } from '../render-utils.js';
 
 const threadName = document.getElementById('thread-name');
 const threadText = document.getElementById('thread-description');
 const errorDisplay = document.getElementById('error-display');
 
 const commentList = document.getElementById('comment-list');
-const commentForm = document.getElementById('add-comment-form');
+const addCommentForm = document.getElementById('add-comment-form');
 
 let error = null;
 let thread = null;
+
+const user = getUser();
 
 window.addEventListener('load', async () => {
     const searchParameters = new URLSearchParams(location.search);
@@ -46,10 +48,10 @@ function displayThread() {
     threadText.textContent = thread.text;
 }
 
-commentForm.addEventListener('submit', async (e) => {
+addCommentForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(commentForm);
+    const formData = new FormData(addCommentForm);
     const newComment = {
         post_id: thread.id,
         text: formData.get('text'),
@@ -57,11 +59,21 @@ commentForm.addEventListener('submit', async (e) => {
 
     const response = await createComment(newComment);
     error = response.error;
-    const comment = response.data;
 
     if (error) {
         displayError();
     } else {
-        //stuff
+        const comment = response.data;
+        thread.comments.unshift(comment);
+        displayComments();
+        addCommentForm.reset();
     }
 });
+
+function displayComments() {
+    commentList.innerHTML = '';
+    for (const comment of thread.comments) {
+        const commentEl = renderComment(comment, user.id);
+        commentList.append(commentEl);
+    }
+}
