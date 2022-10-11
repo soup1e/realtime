@@ -28,3 +28,7 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+
+export async function addPost(post) {
+    return await client.from('posts').insert(post).single();
+}
