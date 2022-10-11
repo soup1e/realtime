@@ -9,7 +9,37 @@ const postList = document.getElementById('post-list');
 const errorDisplay = document.getElementById('error-display');
 
 /* State */
+let error = null;
+let posts = [];
 
 /* Events */
+window.addEventListener('load', async () => {
+    const response = await getPosts();
+    error = response.error;
+    posts = response.data;
+
+    if (error) {
+        displayError();
+    } else {
+        displayPosts();
+    }
+});
 
 /* Display Functions */
+
+function displayPosts() {
+    postList.innerHTML = '';
+
+    for (const post of posts) {
+        const postEl = renderPost(post);
+        postList.append(postEl);
+    }
+}
+
+function displayError() {
+    if (error) {
+        errorDisplay.textContent = error.message;
+    } else {
+        errorDisplay.textContent = '';
+    }
+}

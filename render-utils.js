@@ -1,8 +1,9 @@
 export function renderPost(post) {
     const li = document.createElement('li');
+    li.classList.add('post');
 
     const a = document.createElement('a');
-    a.href = `/post/?id=${post.id}`;
+    a.href = `/thread/?id=${post.id}`;
 
     const h1 = document.createElement('h1');
     h1.textContent = post.title;
