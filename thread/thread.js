@@ -32,6 +32,7 @@ window.addEventListener('load', async () => {
         location.assign('/');
     } else {
         displayThread();
+        displayComments();
     }
 });
 
