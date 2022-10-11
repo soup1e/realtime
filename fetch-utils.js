@@ -32,3 +32,7 @@ export async function signOutUser() {
 export async function addPost(post) {
     return await client.from('posts').insert(post).single();
 }
+
+export async function getPosts() {
+    return await client.from('posts').select('*');
+}
