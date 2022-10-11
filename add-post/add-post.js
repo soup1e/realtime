@@ -19,6 +19,23 @@ postForm.addEventListener('submit', async (e) => {
         title: formData.get('title'),
         text: formData.get('text'),
     };
+
+    const response = await addPost(post);
+    error = response.error;
+
+    if (error) {
+        displayError();
+    } else {
+        location.assign('/');
+    }
 });
 
 //Display-Functions
+
+function displayError() {
+    if (error) {
+        errorDisplay.textContent = error.message;
+    } else {
+        errorDisplay.textcontent = '';
+    }
+}
