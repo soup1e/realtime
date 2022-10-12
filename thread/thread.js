@@ -1,4 +1,4 @@
-import { getPost, createComment, getUser /*, onComment */ } from '../fetch-utils.js';
+import { getPost, createComment, getUser, getComment, onComment } from '../fetch-utils.js';
 import { renderComment } from '../render-utils.js';
 
 const threadName = document.getElementById('thread-name');
@@ -35,12 +35,18 @@ window.addEventListener('load', async () => {
         displayComments();
     }
 
-    // onComment(thread.id, async (payload) => {
-    //     const commentId = payload.new.id;
-    //     const commentResponse = await getComment(commentId);
-    //     error = commentResponse.error;
-    //     console.log(commentId);
-    // });
+    onComment(thread.id, async (payload) => {
+        const commentId = payload.new.id;
+        const commentResponse = await getComment(commentId);
+        error = commentResponse.error;
+        if (error) {
+            displayError();
+        } else {
+            const comment = commentResponse.data;
+            thread.comments.unshift(comment);
+            displayComments();
+        }
+    });
 });
 
 function displayError() {

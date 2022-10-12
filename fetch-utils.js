@@ -54,8 +54,21 @@ export async function addProfile(profile) {
     return await client.from('users').upsert(profile).single();
 }
 
-// export function onComment(postId, handleComment) {
-//     client.from(`comments:post_id=eq.${postId}`).on('INSERT', handleComment).subscribe();
-// }
+export function onComment(postId, handleComment) {
+    client.from(`comments:post_id=eq.${postId}`).on('INSERT', handleComment).subscribe();
+}
 
-// export function getComment() {}
+export async function getComment(id) {
+    return await client
+        .from('comments')
+        .select(
+            `*,
+        user:users(
+            id,
+            username
+        )
+        `
+        )
+        .eq('id', id)
+        .single();
+}
