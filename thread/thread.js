@@ -77,9 +77,6 @@ addCommentForm.addEventListener('submit', async (e) => {
     if (error) {
         displayError();
     } else {
-        const comment = response.data;
-        thread.comments.unshift(comment);
-        displayComments();
         addCommentForm.reset();
     }
 });

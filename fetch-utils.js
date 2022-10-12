@@ -59,16 +59,5 @@ export function onComment(postId, handleComment) {
 }
 
 export async function getComment(id) {
-    return await client
-        .from('comments')
-        .select(
-            `*,
-        user:users(
-            id,
-            username
-        )
-        `
-        )
-        .eq('id', id)
-        .single();
+    return await client.from('comments').select('*').eq('id', id).single();
 }
