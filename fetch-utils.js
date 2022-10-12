@@ -29,6 +29,7 @@ export async function signOutUser() {
 
 /* Data functions */
 
+//POSTS
 export async function addPost(post) {
     return await client.from('posts').insert(post).single();
 }
@@ -46,12 +47,13 @@ export async function getPost(id) {
         .single();
 }
 
-export async function createComment(comment) {
-    return client.from('comments').insert(comment).single();
+export async function onPost(handlePost) {
+    client.from('posts').on('INSERT', handlePost).subscribe();
 }
 
-export async function addProfile(profile) {
-    return await client.from('users').upsert(profile).single();
+//COMMENTS
+export async function createComment(comment) {
+    return client.from('comments').insert(comment).single();
 }
 
 export function onComment(postId, handleComment) {
@@ -60,4 +62,9 @@ export function onComment(postId, handleComment) {
 
 export async function getComment(id) {
     return await client.from('comments').select('*').eq('id', id).single();
+}
+
+// PROFILES
+export async function addProfile(profile) {
+    return await client.from('users').upsert(profile).single();
 }
