@@ -36,6 +36,6 @@ function displayError() {
     if (error) {
         errorDisplay.textContent = error.message;
     } else {
-        errorDisplay.textcontent = '';
+        errorDisplay.textContent = '';
     }
 }

@@ -50,6 +50,10 @@ export async function createComment(comment) {
     return client.from('comments').insert(comment).single();
 }
 
+export async function addProfile(profile) {
+    return await client.from('users').upsert(profile).single();
+}
+
 // export function onComment(postId, handleComment) {
 //     client.from(`comments:post_id=eq.${postId}`).on('INSERT', handleComment).subscribe();
 // }

@@ -1,4 +1,4 @@
-import { getPost, createComment, getUser, onComment } from '../fetch-utils.js';
+import { getPost, createComment, getUser /*, onComment */ } from '../fetch-utils.js';
 import { renderComment } from '../render-utils.js';
 
 const threadName = document.getElementById('thread-name');
