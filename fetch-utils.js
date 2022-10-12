@@ -50,6 +50,8 @@ export async function createComment(comment) {
     return client.from('comments').insert(comment).single();
 }
 
-export function onComment(postId, handleComment) {
-    client.from(`comments:post_id=eq.${postId}`).on('INSERT', handleComment).subscribe();
-}
+// export function onComment(postId, handleComment) {
+//     client.from(`comments:post_id=eq.${postId}`).on('INSERT', handleComment).subscribe();
+// }
+
+// export function getComment() {}

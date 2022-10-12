@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Noto+Sans&display=swap');
+p {
+    display: block;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2rem;
+}
+
+li {
+    font-size: 1rem;
+    font-family: 'Noto Sans', sans-serif;
+    padding-bottom: 25px;
+}
+
+section {
+    -webkit-box-shadow: 0px 0px 4px 4px rgba(166, 166, 166, 0.75);
+    -moz-box-shadow: 0px 0px 4px 4px rgba(166, 166, 166, 0.75);
+    box-shadow: 0px 0px 4px 4px rgba(165, 165, 165, 0.75);
+    padding: 20px;
+    max-width: 100%;
+    background-color: whitesmoke;
+}
+
+input {
+    display: flex;
+    height: 40px;
+    width: 75%;
+    padding: 8px;
+    font-size: 20px;
+    border-width: 0px;
+    border-color: #cccccc;
+    background-color: #ffffff;
+    color: #000000;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
+}
+
+button {
+    font-size: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    width: 25%;
+    height: 40px;
+    color: #fff;
+    border-color: #2a6ebd;
+    font-weight: bold;
+    border-radius: 25px;
+    text-shadow: inset 0px 1px 0px #7cacde;
+    background: #2a6ebd;
+}
+
+#error-display {
+    margin: 0px;
+}
+
+ul {
+    margin-top: 20px;
+}
+
+li {
+    font-size: 1rem;
+    font-family: 'Noto Sans', sans-serif;
+    padding-bottom: 18px;
+    -webkit-box-shadow: 0px 0px 4px 4px rgba(166, 166, 166, 0.75);
+    -moz-box-shadow: 0px 0px 4px 4px rgba(166, 166, 166, 0.75);
+    box-shadow: 0px 0px 4px 4px rgba(165, 165, 165, 0.75);
+    background-color: whitesmoke;
+    padding: 15px;
+    margin-top: 10px;
+}
+form {
+    display: flex;
+    align-items: center;
+}
