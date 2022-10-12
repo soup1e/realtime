@@ -1,3 +1,5 @@
+import '../auth/user.js';
+
 import { getPost, createComment, getUser, getComment, onComment } from '../fetch-utils.js';
 import { renderComment } from '../render-utils.js';
 
