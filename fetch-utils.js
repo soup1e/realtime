@@ -35,13 +35,13 @@ export async function addPost(post) {
 }
 
 export async function getPosts() {
-    return await client.from('posts').select('*');
+    return await client.from('posts').select(`*, user:userprofiles(*)`);
 }
 
 export async function getPost(id) {
     return await client
         .from('posts')
-        .select(`*, comments(*)`)
+        .select(`*, comments(*), user:userprofiles(*)`)
         .eq('id', id)
         .order('created_at', { foreignTable: 'comments', ascending: false })
         .single();
@@ -61,10 +61,14 @@ export function onComment(postId, handleComment) {
 }
 
 export async function getComment(id) {
-    return await client.from('comments').select('*').eq('id', id).single();
+    return await client.from('comments').select(`*, user:userprofiles(*)`).eq('id', id).single();
 }
 
 // PROFILES
 export async function addProfile(profile) {
-    return await client.from('users').upsert(profile).single();
+    return await client.from('userprofiles').upsert(profile).single();
+}
+
+export async function getProfile(user_id) {
+    return await client.from('userprofiles').select().match({ user_id }).maybeSingle();
 }

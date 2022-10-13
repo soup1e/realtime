@@ -1,22 +1,36 @@
 import '../auth/user.js';
-import { addProfile } from '../fetch-utils.js';
+import { addProfile, getUser, getProfile } from '../fetch-utils.js';
 
 const profileForm = document.getElementById('user-form');
 const errorDisplay = document.getElementById('error-display');
 
 let error = null;
+let profile = null;
+
+const user = getUser();
+
+window.addEventListener('load', async () => {
+    const response = await getProfile(user.id);
+    error = response.error;
+    profile = response.data;
+
+    if (error) {
+        displayError();
+    }
+});
 
 profileForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(profileForm);
 
-    const profile = {
+    const profileUpdate = {
         username: formData.get('username'),
         bio: formData.get('bio'),
+        user_id: user.id,
     };
 
-    const response = await addProfile(profile);
+    const response = await addProfile(profileUpdate);
     error = response.error;
 
     if (error) {
