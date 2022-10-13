@@ -8,10 +8,15 @@ const errorDisplay = document.getElementById('error-display');
 
 //State
 let error = null;
-
 const user = getUser();
 
 //Events
+window.addEventListener('load', async () => {
+    // if (!profile) {
+    //     location.assign('../user/index.html');
+    // }
+});
+
 postForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 

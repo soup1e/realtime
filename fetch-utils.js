@@ -68,7 +68,3 @@ export async function getComment(id) {
 export async function addProfile(profile) {
     return await client.from('userprofiles').upsert(profile).single();
 }
-
-export async function getProfile(user_id) {
-    return await client.from('userprofiles').select().match({ user_id }).maybeSingle();
-}
